@@ -21,6 +21,7 @@ devise_for :teachers, controllers: { registrations: "teachers/registrations"}
 devise_for :students, controllers: { registrations: "students/registrations"}
 
 #has_and_belongs_to_many routes
+#/tests/id/students
 resources :teachers do
   resources :students
 end
@@ -30,13 +31,15 @@ end
     resources :questions
   end
   #/tests/id/students
-  # resources :teachers  do
-  #   resources :students
-  # end
+  resources :tests  do
+    resources :students
+  end
   #/tests/id/tests
-  # resources :teachers  do
-  #   resources :tests
-  # end
+  resources :teachers  do
+    resources :tests
+  end
+
+  match "/addstudent" => "tests#addstudent", :via => :get, :as => :add_student_form
 
 #   resources :students do
 #     get :teacher_id, to: "students#new" #-> yoururl.com/registrations/:course_id

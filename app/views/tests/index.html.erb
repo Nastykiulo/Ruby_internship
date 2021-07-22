@@ -15,9 +15,10 @@
               <%= link_to 'Questions', test_questions_path(test_id: test.id), class: "btn btn-light" %>
               <%= link_to 'Edit', edit_test_path(test), class: "btn btn-light" %>
               <%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
+              <%= link_to 'Add students', add_student_form_path, class: "btn btn-light" %>
           </div>
       </div>
   <% end %>    
 </div>
 
-<%= link_to 'New Test', new_test_path, class: "btn btn-info" %>
+<%= link_to 'New Test',  new_teacher_test_path(current_teacher.id), class: "btn btn-info" %>

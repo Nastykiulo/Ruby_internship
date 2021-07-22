@@ -26,7 +26,7 @@ class TestsController < ApplicationController
     
     respond_to do |format|
       if @test.save
-        format.html { redirect_to @test, notice: "Test was successfully created." }
+        format.html { redirect_to  teacher_tests_path(current_teacher.id), notice: "Test was successfully created." }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +65,6 @@ class TestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def test_params
-      params.require(:test).permit(:title, :status, :question_list, :due_date, :description, :user_id)
+      params.require(:test).permit(:title, :status, :question_list, :due_date, :description, :teacher_id)
     end
 end

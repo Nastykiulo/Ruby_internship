@@ -14,9 +14,7 @@
       <tr scope="row">
         <td><%= student.id %></td>
         <td><%= student.email %></td>
-        <td><%= check_box_tag 'accept' %></td>
         <td><%= link_to 'Show', teacher_students_path(current_teacher.id) %></td>
-        <td><%= link_to 'Edit', edit_teacher_student_path(current_teacher.id, student.id) %></td>
         
       </tr>
     <% end %>
@@ -24,5 +22,7 @@
 </table>
 
 <br>
-
+<div class="actions">
+    <%= form.submit %>
+  </div> 
 <%= link_to 'New Student', new_teacher_student_path(current_teacher.id) %>
