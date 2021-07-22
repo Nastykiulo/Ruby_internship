@@ -1,0 +1,23 @@
+<h1>Tests</h1>
+
+
+<div class="main-content"  style="clear:both; overflow: hidden;"> 
+  <% @tests.each do |test| %>
+      <div class="card" style="width: 18rem; float:left; margin:10px;">
+          <img src="https://im0-tub-by.yandex.net/i?id=bd5d0c4e2cef1f1471d74dcafa9b64a4&n=13" class="card-img-top" style="width: 18rem; height: 18rem;" alt="...">
+          <div class="card-body">
+              <h5 class="card-title"><%= test.title %></h5>
+              <p class="card-text">
+                Test Status: <%= test.status %> <br/>
+                Test DueDate: <%= test.due_date %>
+              </p>
+              <%#  /tests/id/questions/new%>
+              <%= link_to 'Questions', test_questions_path(test_id: test.id), class: "btn btn-light" %>
+              <%= link_to 'Edit', edit_test_path(test), class: "btn btn-light" %>
+              <%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
+          </div>
+      </div>
+  <% end %>    
+</div>
+
+<%= link_to 'New Test', new_test_path, class: "btn btn-info" %>

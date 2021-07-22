@@ -1,0 +1,26 @@
+<div class="post-header">
+<br/>
+<h1>Full information</h1>
+  <p>
+    <strong>First name:</strong>
+    <%= @teacher.first_name %>
+  </p>
+
+  <p>
+    <strong>Last name:</strong>
+    <%= @teacher.last_name %>
+  </p>
+
+  <p>
+    <strong>Telephone:</strong>
+    <%= @teacher.telephone %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @teacher.email %>
+  </p>
+  <br/>
+  <%= link_to 'Edit', edit_teacher_path(@teacher), class:"boton1" %> 
+  <%= link_to 'Back', teachers_path , class:"boton1"%>
+</div>

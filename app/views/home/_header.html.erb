@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <%= link_to 'Home page', root_path, class:"navbar-brand customA1" %>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav customA2">
+        <li class="nav-item">
+          <%= link_to 'About Us', home_about_path, class:"nav-link active customA2" %>
+        </li>
+        <% if user_signed_in? %>
+        <%# navbar for autorized user %>
+          <li class="nav-item">
+            <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class:"nav-link active " %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Edit user profile', edit_user_registration_path, class:"nav-link active" %>
+          </li>
+        <%else %>
+        <%# navbar for unautorized user %>
+          <li class="nav-item">
+            <%= link_to 'Sign up', new_user_registration_path, class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign in', new_user_session_path, class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign in admin', new_admin_session_path, class:"nav-link active" %>
+          </li>
+        <% end %>
+        <%# navbar fo teacher role %>
+        <% if user_signed_in? && current_user.teacher? %>
+          <li class="nav-item">
+            <%= link_to 'Students list', teacher_students_path(current_user.id), class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Tests list', teacher_tests_path(current_user.id), class:"nav-link active" %>
+          </li>
+          <% else %>
+            <%# current_user =  %>
+        <% end %>
+        <% if admin_signed_in? %>
+          <%= link_to 'Create a student', new_student_registration_path, class:"nav-link active" %>
+          <%= link_to 'Create a teacher', new_teacher_registration_path, class:"nav-link active" %>
+          <%= link_to 'Log out admin', destroy_user_session_path, method: :delete, class:"nav-link active" %>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+</nav>

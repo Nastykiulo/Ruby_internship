@@ -1,0 +1,17 @@
+<h1>This is about page</h1>
+
+<%# list of all users %>
+<% User.all.each do |user| %>
+  <%= user.inspect %>
+  <br/>
+<% end %>
+
+<% if user_signed_in? && current_user.teacher? %>
+  <h1>Teacher</h1>
+<% elsif user_signed_in? && current_user.admin? %>
+  <h1>Admin</h1>
+<% elsif user_signed_in? && current_user.student? %>
+  <h1>Student</h1>
+<% else %>
+  <h1>Guest</h1>
+<% end %>
