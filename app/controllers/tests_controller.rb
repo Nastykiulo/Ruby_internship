@@ -10,6 +10,9 @@ class TestsController < ApplicationController
   def show
   end
 
+  def addstudent
+  end
+
   # GET /tests/new
   def new
     @test = Test.new

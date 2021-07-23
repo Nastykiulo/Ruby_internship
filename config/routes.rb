@@ -1,16 +1,7 @@
-Rails.application.routes.draw do
-  #devise_for :admins
-  #devise_for :admins
-  #devise_for :users
-  # devise_for :users, controllers: {
-  #      :registrations => "users/registrations" }
-  
+Rails.application.routes.draw do  
   resources :answers
   resources :questions
-  #resources :students
-  #resources :teachers
   resources :tests
-  #get 'home/index'
 root 'home#index'
 get 'home/about'
 get 'home/actions'
@@ -39,7 +30,8 @@ end
     resources :tests
   end
 
-  match "/addstudent" => "tests#addstudent", :via => :get, :as => :add_student_form
+  #get "tests#addstudent"
+  match "/addstudent" => "tests#addstudent", :via => :get, :as => :addstudent
 
 #   resources :students do
 #     get :teacher_id, to: "students#new" #-> yoururl.com/registrations/:course_id
