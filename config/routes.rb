@@ -1,4 +1,5 @@
 Rails.application.routes.draw do  
+  resources :items
   resources :answers
   resources :questions
   resources :tests
@@ -32,7 +33,7 @@ end
 
   #get "tests#addstudent"
   match "/addstudent" => "tests#addstudent", :via => :get, :as => :addstudent
-
+  
 #   resources :students do
 #     get :teacher_id, to: "students#new" #-> yoururl.com/registrations/:course_id
 #  end

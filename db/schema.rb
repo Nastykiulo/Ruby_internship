@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_22_133015) do
+ActiveRecord::Schema.define(version: 2021_07_26_092808) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 2021_07_22_133015) do
     t.integer "student_id"
     t.index ["student_id"], name: "index_answers_on_student_id"
     t.index ["test_id"], name: "index_answers_on_test_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "test_id"
+    t.index ["answer_id"], name: "index_items_on_answer_id"
+    t.index ["question_id"], name: "index_items_on_question_id"
+    t.index ["test_id"], name: "index_items_on_test_id"
   end
 
   create_table "questions", force: :cascade do |t|
