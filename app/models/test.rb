@@ -1,10 +1,10 @@
 class Test < ApplicationRecord
     belongs_to :student, optional: true
-    belongs_to :teacher
+    #belongs_to :teacher
     has_many :question
-    has_many :items, class_name: "Items"
+    #has_many :items, class_name: "Item"
     enum status: [:published, :future, :draft, :pending, :trash]
 
-    attr_accessor :title, :fields_attributes
-    accepts_nested_attributes_for :items, allow_destroy: true
+    #attr_accessible :title, :questions_attributes
+    accepts_nested_attributes_for :question, allow_destroy: true
 end

@@ -1,0 +1,8 @@
+<fieldset>
+    <%= f.label :question, "Question"%>
+    <%= f.text_area :question%><br><br>
+    <%= f.label :question, "Answer"%>
+    <%= f.text_area :answer%>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to "Remove", "#", class: 'remove-fields'%>
+</fieldset>
