@@ -21,6 +21,9 @@
   </tbody>
 </table>
 
+  <%= link_to "New Page", answers_path(page: @page + 1)%>
+  <%= link_to "Preveous Page", answers_path(page: @page - 1)%>
+
 <br>
 
 <%= link_to 'New Answer', new_answer_path, class:"btn btn-light" %>

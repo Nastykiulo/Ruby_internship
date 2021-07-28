@@ -1,9 +1,12 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: %i[ show edit update destroy ]
 
+  ANSWERS_PER_PAGE = 3
   # GET /answers or /answers.json
   def index
-    @answers = Answer.all
+    #@answers = Answer.all
+    @page = params.fetch(:page, 0).to_i
+    @answers = Answer.offset(@page*ANSWERS_PER_PAGE).limit(ANSWERS_PER_PAGE)
   end
 
   # GET /answers/1 or /answers/1.json

@@ -25,6 +25,8 @@
   </tbody>
 </table>
 
+  <%= link_to "New Page", items_path(page: @page + 1)%>
+  <%= link_to "Preveous Page", items_path(page: @page - 1)%>
 <br>
 
 <%= link_to 'New Item', new_item_path, class:"btn btn-light" %>

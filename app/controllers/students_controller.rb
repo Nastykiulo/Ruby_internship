@@ -1,9 +1,12 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[ show edit update destroy ]
 
+  STUDENTS_PER_PAGE = 3
   # GET /students or /students.json
   def index
-    @students = Student.all
+    #@students = Student.all
+    @page = params.fetch(:page, 0).to_i
+    @students = Student.offset(@page*STUDENTS_PER_PAGE).limit(STUDENTS_PER_PAGE)
   end
 
   # GET /students/1 or /students/1.json

@@ -26,6 +26,8 @@
   </tbody>
 </table>
 
+  <%= link_to "New Page", teachers_path(page: @page + 1)%>
+  <%= link_to "Preveous Page", teachers_path(page: @page - 1)%>
 <br>
 
 <%= link_to 'New Teacher', new_teacher_path, class:"btn btn-light" %>
