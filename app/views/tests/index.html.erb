@@ -1,5 +1,10 @@
 <h1>Tests</h1>
 
+<form action="/tests" method="GET">
+  <input type="text" name="title" >
+  <input type="submit" value="Search for test title">
+</form>
+
 
 <div class="main-content"  style="clear:both; overflow: hidden;"> 
   <% @tests.each do |test| %>

@@ -8,6 +8,9 @@ class TestsController < ApplicationController
     #@tests = Test.all
     @page = params.fetch(:page, 0).to_i
     @tests = Test.offset(@page*TESTS_PER_PAGE).limit(TESTS_PER_PAGE)
+
+    initialize_search
+    handle_search_name
   end
 
   # GET /tests/1 or /tests/1.json
@@ -26,6 +29,7 @@ class TestsController < ApplicationController
   # GET /tests/1/edit
   def edit
   end
+
 
   # POST /tests or /tests.json
   def create
@@ -75,4 +79,21 @@ class TestsController < ApplicationController
     def test_params
       params.require(:test).permit(:title, :status, :question_list, :due_date, :description, questions_attributes: [:id, :question, :answer])
     end
+
+     def initialize_search
+      @tests = Test.order(title: :desc)
+      session[:title] ||= params[:title]
+      session[:filter] = params[:filter]
+      params[:filter_option] = nil if params[:filter_option] == ""
+      session[:filter_option] = params[:filter_option]
+    end
+  
+    def handle_search_name
+      if session[:title]
+        @tests = Test.where("title LIKE ?", "%#{session[:title]}%")
+      else
+        @tests = Test.all
+      end
+    end
+
 end

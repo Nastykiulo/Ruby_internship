@@ -69,4 +69,20 @@ class AnswersController < ApplicationController
     def answer_params
       params.require(:answer).permit(:answer)
     end
+
+    def initialize_search
+      @answer = Answer.order(answer: :desc)
+      session[:answer] ||= params[:answer]
+      session[:filter] = params[:filter]
+      params[:filter_option] = nil if params[:filter_option] == ""
+      session[:filter_option] = params[:filter_option]
+    end
+  
+    def handle_search_name
+      if session[:answer]
+        @answer = Answer.where("answer LIKE ?", "%#{session[:answer]}%")
+      else
+        @answer = Answer.all
+      end
+    end
 end
