@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions
   resources :tests
+  resources :teachers
 root 'home#index'
 get 'home/about'
 get 'home/actions'
@@ -16,6 +17,9 @@ devise_for :students, controllers: { registrations: "students/registrations"}
 #/tests/id/students
 resources :teachers do
   resources :students
+end
+resources :questions do
+  resources :answers
 end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #/tests/id/questions

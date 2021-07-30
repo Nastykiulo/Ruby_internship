@@ -1,0 +1,5 @@
+<p> <%= student.id %> | <%=link_to student.last_name, teacher_student_path(@teacher, student) %> </p>
+<p>Edit this student:</p>
+<%= render 'students/form', student: student %>
+<p> <%= link_to "Delete student", teacher_student_path(@teacher, student), method: :delete %> </p>
+<hr>
