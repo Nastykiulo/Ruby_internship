@@ -1,0 +1,70 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+  - cron: "0 2 * * 1-5"
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  my_job:
+    name: deploy to staging
+    runs-on: ubuntu-latest
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          
+  name: RuboCop Linter Action
+  # You may pin to the exact commit or the version.
+  # uses: andrewmcodes-archive/rubocop-linter-action@c9de2ff0e58217d3aa9167324b9dabdd2c6eefbe
+  uses: andrewmcodes-archive/rubocop-linter-action@v3.3.0
+  with:
+    # Define a path to your optional action config file.
+    action_config_path: # optional, default is .github/config/rubocop_linter_action.yml
+    # Return exit code if linter returns some failures.
+    exit_on_failure: # optional, default is true
+    
+    - name: Code review using Reek
+  # You may pin to the exact commit or the version.
+  # uses: moneyforward/reek-action@43ef81065182005f9ab5a6ebf652a1cbdf623d24
+    uses: moneyforward/reek-action@v0.0.1
+    with:
+    # Specify files or directories
+
+(Multiple files or directories can be specified by separating them with line feed)
+
+    files: # optional
+    # Changes `reek` command line options.
+
+Specify the options in JSON array format.
+e.g.: '["--smell", "NilCheck"]'
+
+    options: # optional
+    # Changes the current working directory of the Node.js process
+    working_directory: # optional
