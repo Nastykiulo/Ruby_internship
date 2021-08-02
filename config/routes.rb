@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions
   resources :tests
-  resources :teachers
+  
 root 'home#index'
 get 'home/about'
 get 'home/actions'
@@ -12,6 +12,8 @@ devise_for :users, controllers: { registrations: "users/registrations" }
 devise_for :admins, controllers: { registrations: "admins/registrations" }
 devise_for :teachers, controllers: { registrations: "teachers/registrations"}
 devise_for :students, controllers: { registrations: "students/registrations"}
+
+resources :teachers
 
 #has_and_belongs_to_many routes
 #/tests/id/students

@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :set_test, only: %i[ show edit update destroy ]
   before_action :set_question, only: %i[ show edit update destroy ]
 
   QUESTIONS_PER_PAGE = 3
@@ -24,17 +25,22 @@ class QuestionsController < ApplicationController
 
   # POST /questions or /questions.json
   def create
-    @question = Question.new(question_params)
 
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to @question, notice: "Question was successfully created." }
-        format.json { render :show, status: :created, location: @question }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
-      end
-    end
+    @test = Test.find(params[:test_id])
+    @question = @test.questions.create(question_params)
+    redirect_to teacher_test_path(test_id: params[:test_id], @test)
+
+    # @question = Question.new(question_params)
+
+    # respond_to do |format|
+    #   if @question.save
+    #     format.html { redirect_to @question, notice: "Question was successfully created." }
+    #     format.json { render :show, status: :created, location: @question }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @question.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /questions/1 or /questions/1.json
@@ -60,6 +66,10 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def set_test
+    @test = Test.find(params[:test_id])
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_question
       @question = Question.find(params[:id])

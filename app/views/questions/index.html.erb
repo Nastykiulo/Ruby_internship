@@ -28,8 +28,8 @@
   </tbody>
 </table>
 
-  <%= link_to "New Page", questions_path(page: @page + 1)%>
+  <%= link_to "New Page", questions_path(page: @page + 1)%> |
   <%= link_to "Preveous Page", questions_path(page: @page - 1)%>
 <br>
 
-<%= link_to 'New Question', new_question_path, class:"btn btn-light" %>
+<%= link_to 'New Question',  new_test_question_path(test_id: params[:test_id]), class:"btn btn-light" %>
