@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @band.name %>
+</p>
+
+<% if @band.albums.any? %>
+  <hr>
+  <h2>Questions of <%= @band.name %> </h2>
+  <%= render @band.albums %>
+  <% end %>
+
+  <h2>Add question: </h2>
+  <%render 'albums/form', student: @band.albums.build %>
+
+<%= link_to 'Edit', edit_band_path(@band) %> |
+<%= link_to 'Back', bands_path %>

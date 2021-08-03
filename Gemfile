@@ -42,7 +42,7 @@ gem 'devise'
 
 gem 'dropzonejs-rails'
 
-gem 'haml-rails'
+#gem 'haml-rails'
 
 #gem 'mongoid', '~> 4.0.0'
 #Sgem 'protected_attributes'

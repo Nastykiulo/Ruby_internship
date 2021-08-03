@@ -1,4 +1,6 @@
 Rails.application.routes.draw do  
+  resources :albums
+  resources :bands
   resources :items
   resources :answers
   resources :questions
@@ -15,6 +17,9 @@ devise_for :students, controllers: { registrations: "students/registrations"}
 
 resources :teachers
 
+resources :bands do
+  resources :albums
+end
 #has_and_belongs_to_many routes
 #/tests/id/students
 resources :teachers do
@@ -27,6 +32,12 @@ end
   #/tests/id/questions
   resources :tests  do
     resources :questions
+  end
+
+  resources :teachers do
+    resources :tests do
+     resources :questions
+    end
   end
   #/tests/id/students
   resources :tests  do
