@@ -25,12 +25,12 @@ class QuestionsController < ApplicationController
 
   # POST /questions or /questions.json
   def create
-      @test = Test.find(params[:test_id])
-      @question = @test.questions.create(question_params)
+    @test = Test.find(params[:test_id])
+    @question = @test.question.create(question_params)  
     respond_to do |format|
       puts @question.inspect
       if @question.save
-        format.html { redirect_to test_question_path(test_id: params[:test_id]), notice: "Question was successfully created." }
+        format.html { redirect_to teacher_test_path(current_teacher.id, :id), notice: "Question was successfully created." }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new, status: :unprocessable_entity }

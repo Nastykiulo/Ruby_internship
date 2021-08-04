@@ -12,7 +12,7 @@
   <% end %>
 
   <h2>Add question: </h2>
-  <%render 'albums/form', student: @band.albums.build %>
+  <%= render 'albums/form', album: @band.albums.build %>
 
 <%= link_to 'Edit', edit_band_path(@band) %> |
 <%= link_to 'Back', bands_path %>

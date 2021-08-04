@@ -13,14 +13,14 @@
   <%= @question.answer %>
 </p>
 
-<%# <% if @question.answers.any? %>
-  <%# <hr>
+<% if @question.answers.any? %>
+  <hr>
   <h2>Answers of <%= @question.question </h2>
   <%= render @question.answers %>
-  <%# <% end %> 
+  <% <% end 
 
   <h2>Add student: </h2>
-  <%#render 'answers/form', student: @question.answers.build %> 
+  <%render 'answers/form', answer: @question.answers.build %> 
 
 <%= link_to 'Edit', edit_question_path(@question), class:"btn btn-light"  %> |
 <%= link_to 'Back', questions_path, class:"btn btn-light"  %>

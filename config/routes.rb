@@ -17,26 +17,28 @@ devise_for :students, controllers: { registrations: "students/registrations"}
 
 resources :teachers
 
-resources :bands do
-  resources :albums
-end
+# resources :bands do
+#   resources :albums
+# end
 #has_and_belongs_to_many routes
 #/tests/id/students
 resources :teachers do
   resources :students
 end
-resources :questions do
-  resources :answers
-end
+# resources :questions do
+#   resources :answers
+# end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #/tests/id/questions
-  resources :tests  do
-    resources :questions
-  end
+  # resources :tests  do
+  #   resources :questions
+  # end
 
   resources :teachers do
     resources :tests do
-     resources :questions
+     resources :questions do 
+      resources :answers
+     end
     end
   end
   #/tests/id/students

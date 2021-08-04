@@ -66,7 +66,7 @@
         <%end%>
 
         <% if teacher_signed_in? %>
-          <%= link_to 'My tests', tests_path, class:"nav-link active" %>
+          <%= link_to 'My tests', teacher_tests_path(current_teacher.id), class:"nav-link active" %>
           <%= link_to 'My students', new_teacher_registration_path, class:"nav-link active" %>
           <%= link_to 'Log out', destroy_teacher_session_path, method: :delete, class:"nav-link active" %>
           <%= link_to 'Delete my acount', cancel_teacher_registration_path, method: :delete, class:"nav-link active" %>

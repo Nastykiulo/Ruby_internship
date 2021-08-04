@@ -30,7 +30,7 @@
   <% end %>
 
   <h2>Add question: </h2>
-  <%render 'questions/form', student: @test.question.build %>
+  <%= render 'questions/form', question: @test.question.build %>
 
 <%= link_to 'Edit', edit_teacher_test_path(@test), class:"btn btn-light" %> |
 <%= link_to 'Back', teacher_tests_path(current_teacher.id), class:"btn btn-light" %>

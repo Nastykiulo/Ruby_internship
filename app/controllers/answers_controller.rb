@@ -30,15 +30,15 @@ class AnswersController < ApplicationController
     redirect_to question_path(@question)
     #@answer = Answer.new(answer_params)
 
-    # respond_to do |format|
-    #   if @answer.save
-    #     format.html { redirect_to @answer, notice: "Answer was successfully created." }
-    #     format.json { render :show, status: :created, location: @answer }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @answer.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @answer.save
+        format.html { redirect_to teacher_test_path(current_teacher.id, :id), notice: "Answer was successfully created." }
+        format.json { render :show, status: :created, location: @answer }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @answer.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /answers/1 or /answers/1.json
