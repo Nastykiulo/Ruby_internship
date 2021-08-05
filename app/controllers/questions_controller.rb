@@ -25,6 +25,7 @@ class QuestionsController < ApplicationController
 
   # POST /questions or /questions.json
   def create
+    #@teacher = Teacher.find(params[:teacher_id])
     @test = Test.find(params[:test_id])
     @question = @test.question.create(question_params)  
     respond_to do |format|
@@ -38,17 +39,7 @@ class QuestionsController < ApplicationController
       end
     end
 
-    # @question = Question.new(question_params)
-
-    # respond_to do |format|
-    #   if @question.save
-    #     format.html { redirect_to @question, notice: "Question was successfully created." }
-    #     format.json { render :show, status: :created, location: @question }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @question.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    
   end
 
   # PATCH/PUT /questions/1 or /questions/1.json
@@ -85,7 +76,7 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:question, :answer, :test_id)
+      params.require(:question).permit(:question, :question_id)
     end
 
     def initialize_search

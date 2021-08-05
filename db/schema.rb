@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_03_143232) do
+ActiveRecord::Schema.define(version: 2021_08_05_170715) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 2021_08_03_143232) do
     t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "test_id"
     t.integer "student_id"
+    t.integer "question_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["student_id"], name: "index_answers_on_student_id"
-    t.index ["test_id"], name: "index_answers_on_test_id"
   end
 
   create_table "bands", force: :cascade do |t|
@@ -97,7 +97,6 @@ ActiveRecord::Schema.define(version: 2021_08_03_143232) do
     t.string "title"
     t.string "string"
     t.string "status"
-    t.string "question_list"
     t.date "due_date"
     t.string "description"
     t.datetime "created_at", null: false

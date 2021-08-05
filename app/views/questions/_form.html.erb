@@ -1,4 +1,4 @@
-<%= form_with( model: [ @test, question], local: true) do |form| %>
+<%= form_with( model: [ @teacher, question], :url =>  new_teacher_test_question_path(@article), local: true) do |form| %>
   <% if question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -17,13 +17,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :answer %>
-    <%= form.text_field :answer %>
-  </div>
-
-  <%# <div class="field">
-    <%= form.number_field :test_id, value: 1, type: :hidden %>
-  <%# </div> %>
+    <%= form.number_field :question_id, value: params[:question_id], type: :hidden %>
+ </div>
 
   <div class="field">
     <%= form.number_field :test_id, value: params[:test_id], type: :hidden %>

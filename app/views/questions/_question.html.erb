@@ -1,4 +1,4 @@
-<p> <%= question.id %> | <%=link_to question.question, test_question_path(@test, question) %> </p>
+<p> <%= question.id %> | <%=link_to question.question, teacher_test_question_path(current_teacher.id, @test, question) %> </p>
 <p>Edit this question:</p>
 <%= render 'questions/form', question: question %>
 <p> <%= link_to "Delete question", test_question_path(@test, question), method: :delete %> </p>

@@ -9,11 +9,6 @@
 </p>
 
 <p>
-  <strong>Question list:</strong>
-  <%= @test.question_list %>
-</p>
-
-<p>
   <strong>Due date:</strong>
   <%= @test.due_date %>
 </p>
@@ -23,7 +18,7 @@
   <%= @test.description %>
 </p>
 
-<% if @test.question.any? %>
+<% if @test.question.any?  %>
   <hr>
   <h2>Questions of <%= @test.title %> </h2>
   <%= render @test.question %>
