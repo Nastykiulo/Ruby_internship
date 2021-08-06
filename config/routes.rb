@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :answers
   resources :questions
   resources :tests
+  resources :teachers
   
 root 'home#index'
 get 'home/about'
@@ -15,18 +16,15 @@ devise_for :admins, controllers: { registrations: "admins/registrations" }
 devise_for :teachers, controllers: { registrations: "teachers/registrations"}
 devise_for :students, controllers: { registrations: "students/registrations"}
 
-resources :teachers
+
 
 # resources :bands do
 #   resources :albums
 # end
 #has_and_belongs_to_many routes
 #/tests/id/students
-resources :teachers do
-  resources :students
-end
-# resources :questions do
-#   resources :answers
+# resources :teachers do
+#   resources :students
 # end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #/tests/id/questions
@@ -50,8 +48,13 @@ end
     resources :tests
   end
 
+  resources :questions do
+  resources :answers
+end
   #get "tests#addstudent"
   match "/addstudent" => "tests#addstudent", :via => :get, :as => :addstudent
+
+  match "/teacherstudent" => "teachers#students", :via => :get, :as => :students
   
 #   resources :students do
 #     get :teacher_id, to: "students#new" #-> yoururl.com/registrations/:course_id

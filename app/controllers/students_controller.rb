@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  before_action :set_teacher, only: %i[ show edit update destroy ]
   before_action :set_student, only: %i[ show edit update destroy ]
 
   STUDENTS_PER_PAGE = 3
@@ -25,7 +26,10 @@ class StudentsController < ApplicationController
 
   # POST /students or /students.json
   def create
-    @student = Student.new(student_params)
+    #@student = Student.new(student_params)
+
+    @teacher = Teacher.find(params[:teacher_id])
+    @student = @teacher.students.create(student_params)
 
     respond_to do |format|
       if @student.save
@@ -61,6 +65,10 @@ class StudentsController < ApplicationController
   end
 
   private
+
+  def set_teacher
+    @teacher = teacher.find(params[:teacher_id])
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_student
       @student = Student.find(params[:id])
