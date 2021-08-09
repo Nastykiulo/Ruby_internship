@@ -9,8 +9,8 @@ class TeachersController < ApplicationController
     @teachers = Teacher.offset(@page*TEACHERS_PER_PAGE).limit(TEACHERS_PER_PAGE)
   end
 
-  def students
-  end
+  # def students
+  # end
 
   # GET /teachers/1 or /teachers/1.json
   def show

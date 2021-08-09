@@ -11,9 +11,13 @@
         <%= current_admin.inspect %>
     <br>
     <%end%>
-    <% if teacher_signed_in? %>
+    <% if student_signed_in? %>
         <p>current_student: </p>
         <%= current_student.inspect %> 
+    <%end%>
+    <% if user_signed_in? %>
+        <p>current_user: </p>
+        <%= current_user.inspect %> 
     <%end%>
     
 </div>
@@ -23,52 +27,6 @@
         which is designed to solve a wide range of tasks: 
     </h1>
 </div>
-
-<ul class="square">
-    <li>
-        Testing, control of students 'and students' knowledge.
-    </li>
-    <li>
-        Determination of the professional level of employees, personnel assessment (HR).
-    </li>
-    <li>
-        Preparation for exams and certifications.
-    </li>
-    <li>
-        Psychological testing.
-    </li>
-    <li>
-        Organization and conduct of surveys, Olympiads, competitions.
-    </li>
-</ul>
-<br>
-<div class="four">
-    <h1>
-    550 free tests are available (for 72000 questions with explanations):
-    </h1>
-</div>
-
-<ul class="square">
-    <li>
-        Psychological tests.
-    </li>
-    <li>
-        Industrial safety (Rostechnadzor tests for certification of employees of organizations and industrial enterprises,
-        an analogue of Olimpoks).
-    </li>
-    <li>
-        Labor protection, electrical safety, fire and technical minimum.
-    </li>
-    <li>
-        Tests on working professions.
-    </li>
-    <li>
-        Traffic rules
-    </li>
-    <li>
-        Transport security.
-    </li>
-</ul>
 
 <h1> 
     Advantages of the testing system
@@ -225,8 +183,6 @@
         </div>
     </div>
 </div>
-    
-    
 
     <div class="card" style="width: 18rem; float:left; margin:10px;">
         <img src="https://im0-tub-by.yandex.net/i?id=bd5d0c4e2cef1f1471d74dcafa9b64a4&n=13" class="card-img-top" style="width: 18rem; height: 18rem;" alt="...">

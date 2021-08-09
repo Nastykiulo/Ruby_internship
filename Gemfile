@@ -42,6 +42,8 @@ gem 'devise'
 
 gem 'dropzonejs-rails'
 
+gem 'coffee-script-source', '1.8.0'
+
 #gem 'haml-rails'
 
 #gem 'mongoid', '~> 4.0.0'
