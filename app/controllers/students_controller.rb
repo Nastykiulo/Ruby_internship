@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_teacher, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[ show edit update destroy ]
   before_action :set_student, only: %i[ show edit update destroy ]
 
   STUDENTS_PER_PAGE = 3
@@ -18,6 +19,7 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @teacher = Teacher.find_by id: params["teacher_id"]
+    @user = User.find_by id: params["user_id"]
   end
 
   # GET /students/1/edit
@@ -68,6 +70,10 @@ class StudentsController < ApplicationController
 
   def set_teacher
     @teacher = teacher.find(params[:teacher_id])
+  end
+
+  def set_user
+    @user = user.find(params[:user_id])
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_student

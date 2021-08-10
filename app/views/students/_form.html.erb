@@ -1,4 +1,4 @@
-<%= form_with(model: [@teacher, student], url: student_session_path(student), local: true) do |form| %>
+<%= form_with(model: [@user, student], url: student_session_path(student), local: true) do |form| %>
   <% if student.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
@@ -21,11 +21,7 @@
     <%= form.text_field :email %>
   </div>
 
-  <div class="field">
-    <%= form.number_field :user_id, id: :student_user_id, value: current_teacher.id, type: :hidden %>
-  </div>
-
   <div class="actions">
-    <%= form.submit, class:"btn btn-light"  %>
+    <%= form.submit  %>
   </div>
 <% end %>

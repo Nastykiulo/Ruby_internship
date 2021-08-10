@@ -1,6 +1,7 @@
 class User < ApplicationRecord
    #before_action :authenticate_user!
    after_create :default_role 
+   has_many :students
   
 
    enum role: [:guest, :teacher, :student, :admin]
