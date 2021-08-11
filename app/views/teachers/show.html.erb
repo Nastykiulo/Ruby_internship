@@ -38,10 +38,10 @@
   </thead>
 
   <tbody>
-    <% Student.all.each do |user| %>
+    <% @students.each do |user| %>
       <tr scope="row">
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
+        <td><%= user.id %></td>
+        <td><%= user.role %></td>
       </tr>
     <% end %>
   </tbody>
@@ -51,6 +51,11 @@
   <% Student.all.each do |user| %>
     <%= user.inspect %>
     <br/>
+  <% end %>
+
+  <hr>
+  <% teacher_students_with_associations.each do |user| %>
+      <%= user.inspect %>
   <% end %>
 
   <h2> Add student: </h2>

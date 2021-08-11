@@ -8,7 +8,7 @@ class Teachers::RegistrationsController < Devise::RegistrationsController
   end
   #then the method called in the before action where you permit the parameters
   def create
-    params[:teacher] = params[:teacher]&.merge(type: 'Teacher')
+    params[:user] = params[:users]&.merge(type: 'Teacher')
     super
   end  
   protected  

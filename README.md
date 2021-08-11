@@ -21,4 +21,22 @@ Things you may want to cover:
 
 * Deployment instructions
 
+* Installation
+
+* 1. Clone/download repo
+
+* 2. Run bundle install
+
+* 3. Run rails db:migrate
+
+* Usage
+
+* Development
+
+* 1. Build app continuously 
+
+* 2. Run rails server
+
+* 3. App served @ http://localhost:3000
+
 * ...
