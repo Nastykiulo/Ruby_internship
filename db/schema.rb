@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_07_101329) do
+ActiveRecord::Schema.define(version: 2021_08_12_154824) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,10 +37,6 @@ ActiveRecord::Schema.define(version: 2021_08_07_101329) do
     t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "student_id"
-    t.integer "question_id"
-    t.index ["question_id"], name: "index_answers_on_question_id"
-    t.index ["student_id"], name: "index_answers_on_student_id"
   end
 
   create_table "bands", force: :cascade do |t|
@@ -50,23 +46,13 @@ ActiveRecord::Schema.define(version: 2021_08_07_101329) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "question_id"
     t.integer "answer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "test_id"
+    t.string "question_title"
     t.index ["answer_id"], name: "index_items_on_answer_id"
-    t.index ["question_id"], name: "index_items_on_question_id"
     t.index ["test_id"], name: "index_items_on_test_id"
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.string "question"
-    t.string "answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "test_id"
-    t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -77,11 +63,11 @@ ActiveRecord::Schema.define(version: 2021_08_07_101329) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "students_teachers", force: :cascade do |t|
-    t.integer "teacher_id"
+  create_table "students_tests", force: :cascade do |t|
+    t.integer "test_id"
     t.integer "student_id"
-    t.index ["student_id"], name: "index_students_teachers_on_student_id"
-    t.index ["teacher_id"], name: "index_students_teachers_on_teacher_id"
+    t.index ["student_id"], name: "index_students_tests_on_student_id"
+    t.index ["test_id"], name: "index_students_tests_on_test_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -95,15 +81,13 @@ ActiveRecord::Schema.define(version: 2021_08_07_101329) do
 
   create_table "tests", force: :cascade do |t|
     t.string "title"
-    t.string "string"
     t.string "status"
     t.date "due_date"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "teacher_id"
-    t.integer "student_id"
-    t.index ["student_id"], name: "index_tests_on_student_id"
+    t.string "category"
     t.index ["teacher_id"], name: "index_tests_on_teacher_id"
   end
 

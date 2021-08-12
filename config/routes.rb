@@ -50,6 +50,15 @@ end
   resources :questions do
   resources :answers
 end
+
+
+resources :items do
+  resources :questions
+end
+
+resources :items do
+  resources :answers
+end
   #get "tests#addstudent"
   match "/addstudent" => "tests#addstudent", :via => :get, :as => :addstudent
 

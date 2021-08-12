@@ -1,7 +1,7 @@
 class Test < ApplicationRecord
-    belongs_to :student, optional: true
+    #belongs_to :student, optional: true
     #belongs_to :teacher
-    has_many :question
+    has_and_belongs_to_many :students
     #has_many :items, class_name: "Item"
     enum status: [:published, :future, :draft, :pending, :trash]
 

@@ -39,4 +39,6 @@ Things you may want to cover:
 
 * 3. App served @ http://localhost:3000
 
+* link to UML Diagramm: https://drive.google.com/file/d/1Fyfs9Mm_XRZM1A1N-8U7WBriviltfMrr/view?usp=sharing 
+
 * ...
