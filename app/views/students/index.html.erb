@@ -23,8 +23,7 @@
   </tbody>
 </table>
 
-  <%= link_to "New Page", students_path(page: @page + 1)%>
-  <%= link_to "Preveous Page", students_path(page: @page - 1)%>
+  <%== pagy_nav(@pagy).html_safe %>
 <br>
 
 <%= link_to 'New Student', new_teacher_student_path(current_teacher.id), class:"btn btn-light"  %>

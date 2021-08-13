@@ -7,8 +7,7 @@ class StudentsController < ApplicationController
   # GET /students or /students.json
   def index
     #@students = Student.all
-    @page = params.fetch(:page, 0).to_i
-    @students = Student.offset(@page*STUDENTS_PER_PAGE).limit(STUDENTS_PER_PAGE)
+    @pagy, @students = pagy(Student.all)
   end
 
   # GET /students/1 or /students/1.json

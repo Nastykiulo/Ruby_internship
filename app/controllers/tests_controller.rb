@@ -1,23 +1,15 @@
 class TestsController < ApplicationController
+  include Pagy::Backend
   before_action :set_test, only: %i[ show edit update destroy ]
   #@tests = Test.new(params[:test_id])
   # GET /tests or /tests.json
-  TESTS_PER_PAGE = 3
-
   def index
     #@tests = Test.all
-    @page = params.fetch(:page, 0).to_i
-    @tests = Test.offset(@page*TESTS_PER_PAGE).limit(TESTS_PER_PAGE)
-
-    initialize_search
-    handle_search_name
+    @pagy, @tests = pagy(Test.all)
   end
 
   # GET /tests/1 or /tests/1.json
   def show
-  end
-
-  def addstudent
   end
 
   # GET /tests/new

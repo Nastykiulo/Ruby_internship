@@ -25,9 +25,6 @@
       </div>
   <% end %>    
 </div>
-<div>
-  <%= link_to "New Page", teacher_tests_path(current_teacher.id, page: @page + 1)%>
-  <%= link_to "Preveous Page", teacher_tests_path(current_teacher.id, page: @page - 1)%>
-</div>
 
 <%= link_to 'New Test',  new_teacher_test_path(current_teacher.id), class: "btn btn-info" %>
+<%== pagy_nav(@pagy).html_safe %>

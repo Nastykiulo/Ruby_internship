@@ -44,11 +44,12 @@ gem 'dropzonejs-rails'
 
 gem 'coffee-script-source', '1.8.0'
 
+gem 'pagy', '~> 3.5'
 #gem 'haml-rails'
 
 #gem 'mongoid', '~> 4.0.0'
-#Sgem 'protected_attributes'
-gem 'jquery-rails', '~> 4.4'
+#gem 'protected_attributes'
+#gem 'protected_attributes'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  include Pagy::Backend
   before_action :set_item, only: %i[ show edit update destroy ]
 
   ITEMS_PER_PAGE = 3
@@ -25,6 +26,10 @@ class ItemsController < ApplicationController
   # POST /items or /items.json
   def create
     @item = Item.new(item_params)
+
+    @band = Band.find(params[:band_id])
+    @album = @band.albums.create(album_params)  
+    redirect_to band_path(@band)
 
     respond_to do |format|
       if @item.save

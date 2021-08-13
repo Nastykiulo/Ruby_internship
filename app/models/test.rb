@@ -6,5 +6,5 @@ class Test < ApplicationRecord
     enum status: [:published, :future, :draft, :pending, :trash]
 
     #attr_accessible :title, :questions_attributes
-    accepts_nested_attributes_for :question, allow_destroy: true
+    #accepts_nested_attributes_for :question, allow_destroy: true
 end
