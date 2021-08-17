@@ -6,8 +6,7 @@ class QuestionsController < ApplicationController
   # GET /questions or /questions.json
   def index
     #@questions = Question.all
-    @page = params.fetch(:page, 0).to_i
-    @questions = Question.offset(@page*QUESTIONS_PER_PAGE).limit(QUESTIONS_PER_PAGE)
+    @pagy, @questions = pagy(Question.all)
   end
 
   # GET /questions/1 or /questions/1.json

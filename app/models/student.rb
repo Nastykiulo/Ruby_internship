@@ -1,8 +1,7 @@
 class Student < User
     # attr_accessor :teacher, :teacher_id
-     has_many :test
+     has_and_belongs_to_many :tests
      belongs_to :user
-    # has_many :answer
     enum role: [:student]
 
     devise :database_authenticatable, :registerable,

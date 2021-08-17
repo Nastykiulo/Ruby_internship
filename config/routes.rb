@@ -1,4 +1,7 @@
 Rails.application.routes.draw do  
+  resources :test_result_items
+  resources :test_results
+  resources :assignments
   resources :albums
   resources :bands
   resources :items

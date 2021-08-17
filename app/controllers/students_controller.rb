@@ -3,7 +3,6 @@ class StudentsController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :set_student, only: %i[ show edit update destroy ]
 
-  STUDENTS_PER_PAGE = 3
   # GET /students or /students.json
   def index
     #@students = Student.all
@@ -17,8 +16,6 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
-    @teacher = Teacher.find_by id: params["teacher_id"]
-    @user = User.find_by id: params["user_id"]
   end
 
   # GET /students/1/edit

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_154824) do
+ActiveRecord::Schema.define(version: 2021_08_17_170048) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2021_08_12_154824) do
     t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "assignments", force: :cascade do |t|
+    t.integer "test_id"
+    t.integer "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_assignments_on_student_id"
+    t.index ["test_id"], name: "index_assignments_on_test_id"
   end
 
   create_table "bands", force: :cascade do |t|
@@ -77,6 +86,24 @@ ActiveRecord::Schema.define(version: 2021_08_12_154824) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "first_name"
+  end
+
+  create_table "test_result_items", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "student_answer_id"
+    t.integer "test_result_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_test_result_items_on_question_id"
+    t.index ["test_result_id"], name: "index_test_result_items_on_test_result_id"
+  end
+
+  create_table "test_results", force: :cascade do |t|
+    t.integer "assignment_id"
+    t.boolean "pass"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assignment_id"], name: "index_test_results_on_assignment_id"
   end
 
   create_table "tests", force: :cascade do |t|
