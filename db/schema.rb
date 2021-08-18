@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_170048) do
+ActiveRecord::Schema.define(version: 2021_08_18_181904) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_08_17_170048) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "band_id"
+    t.bigint "band_id"
     t.index ["band_id"], name: "index_albums_on_band_id"
   end
 
@@ -40,8 +43,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_170048) do
   end
 
   create_table "assignments", force: :cascade do |t|
-    t.integer "test_id"
-    t.integer "student_id"
+    t.bigint "test_id"
+    t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_assignments_on_student_id"
@@ -54,14 +57,13 @@ ActiveRecord::Schema.define(version: 2021_08_17_170048) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "items", force: :cascade do |t|
-    t.integer "answer_id"
+  create_table "questions", force: :cascade do |t|
+    t.string "question"
+    t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "test_id"
-    t.string "question_title"
-    t.index ["answer_id"], name: "index_items_on_answer_id"
-    t.index ["test_id"], name: "index_items_on_test_id"
+    t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -73,8 +75,8 @@ ActiveRecord::Schema.define(version: 2021_08_17_170048) do
   end
 
   create_table "students_tests", force: :cascade do |t|
-    t.integer "test_id"
-    t.integer "student_id"
+    t.bigint "test_id"
+    t.bigint "student_id"
     t.index ["student_id"], name: "index_students_tests_on_student_id"
     t.index ["test_id"], name: "index_students_tests_on_test_id"
   end
@@ -89,9 +91,9 @@ ActiveRecord::Schema.define(version: 2021_08_17_170048) do
   end
 
   create_table "test_result_items", force: :cascade do |t|
-    t.integer "question_id"
+    t.bigint "question_id"
     t.integer "student_answer_id"
-    t.integer "test_result_id"
+    t.bigint "test_result_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_test_result_items_on_question_id"
@@ -99,7 +101,7 @@ ActiveRecord::Schema.define(version: 2021_08_17_170048) do
   end
 
   create_table "test_results", force: :cascade do |t|
-    t.integer "assignment_id"
+    t.bigint "assignment_id"
     t.boolean "pass"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -135,4 +137,12 @@ ActiveRecord::Schema.define(version: 2021_08_17_170048) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "albums", "bands"
+  add_foreign_key "assignments", "students"
+  add_foreign_key "assignments", "tests"
+  add_foreign_key "students_tests", "students"
+  add_foreign_key "students_tests", "tests"
+  add_foreign_key "test_result_items", "questions"
+  add_foreign_key "test_result_items", "test_results"
+  add_foreign_key "test_results", "assignments"
 end
