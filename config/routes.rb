@@ -1,4 +1,5 @@
 Rails.application.routes.draw do  
+  resources :answer_items
   resources :test_result_items
   resources :test_results
   resources :assignments
