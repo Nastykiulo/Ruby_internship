@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :assignments
   resources :albums
   resources :bands
-  resources :items
   resources :answers
   resources :questions
   resources :tests

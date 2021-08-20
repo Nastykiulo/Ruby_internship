@@ -21,7 +21,10 @@ class TestResultItemsController < ApplicationController
 
   # POST /test_result_items or /test_result_items.json
   def create
-    @test_result_item = TestResultItem.new(test_result_item_params)
+    #@test_result_item = TestResultItem.new(test_result_item_params)
+    @test_result = TestResult.find(params[:test_result_id])
+    @test_result_item = @test_result.test_result_items.create(test_result_item_params)
+    redirect_to test_result_path(@test_result)
 
     respond_to do |format|
       if @test_result_item.save
@@ -57,6 +60,10 @@ class TestResultItemsController < ApplicationController
   end
 
   private
+
+  def set_test_result
+    @test_result ||= TestResult.find(params[:test_result_id])
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_test_result_item
       @test_result_item = TestResultItem.find(params[:id])

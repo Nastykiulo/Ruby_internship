@@ -5,9 +5,9 @@
 
 <% if @question.answers.any? %>
   <hr>
-  <h2>Answers of <%= @question.question </h2>
+  <h2>Answers of <%= @question.question%> </h2>
   <%= render @question.answers %>
-  <% <% end 
+  <% end %>
 
   <h2>Add answer: </h2>
   <%render 'answers/form', answer: @question.answers.build %> 

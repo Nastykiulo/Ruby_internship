@@ -21,7 +21,10 @@ class AnswerItemsController < ApplicationController
 
   # POST /answer_items or /answer_items.json
   def create
-    @answer_item = AnswerItem.new(answer_item_params)
+    #@answer_item = AnswerItem.new(answer_item_params)
+    @question = Question.find(params[:question_id])
+    @answer_item = @question.answer_items.create(answer_params)
+    redirect_to question_path(@question)
 
     respond_to do |format|
       if @answer_item.save
@@ -58,6 +61,10 @@ class AnswerItemsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_question
+      @question ||= Question.find(params[:question_id])
+    end
+    
     def set_answer_item
       @answer_item = AnswerItem.find(params[:id])
     end

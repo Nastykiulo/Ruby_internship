@@ -1,0 +1,5 @@
+<p> <%= test_result_item.id %> | <%=link_to test_result_item.title, test_result_test_result_item_path(@test_result, test_result_item) %> </p>
+<p>Edit this answer:</p>
+<%= render 'test_result_items/form', test_result: test_result %>
+<p> <%= link_to "Delete answer", test_result_test_result_item_path(@test_result,test_result_item), method: :delete %> </p>
+<hr>
