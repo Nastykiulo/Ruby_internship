@@ -48,6 +48,9 @@ gem 'coffee-script-source', '1.8.0'
 gem 'pagy', '~> 3.5'
 
 gem 'jsonapi.rb'
+
+gem 'search_object'
+gem 'search_object_graphql'
 #gem 'haml-rails'
 
 #gem 'mongoid', '~> 4.0.0'
