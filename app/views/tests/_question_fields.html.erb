@@ -1,0 +1,14 @@
+<form>
+    <div class="nested-fields form-group">
+        <%= f.hidden_field :_destroy %>
+        <div class="form-control">
+            <%= f.label :question %>
+            <%= f.text_field :question %>
+            <div>
+                <%= link_to "Remove", '#', class: "remove_fields btn btn-danger" %>
+            </div>
+        </div>
+        
+        
+    </div>
+</form>

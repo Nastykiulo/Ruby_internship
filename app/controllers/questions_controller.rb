@@ -75,7 +75,7 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:question, :question_id)
+      params.require(:question).permit(:question, :question_id, answer_item_attributes:[:title, :correct, :_destroy])
     end
 
     def initialize_search

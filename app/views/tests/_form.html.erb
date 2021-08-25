@@ -20,14 +20,6 @@
     <%= form.select :status, Test.statuses.keys %>
   </div>
 
-  <div class="field dropezone fallback">
-    <%= form.label :question_list %>
-    <%= form.file_field :question_list %>
-    <%# <%= form.fields_for html: {multipart:true, autoProcessQueue: false, class: "dropzone", id: "my-dropzone"} do |dropezone|%> 
-      <%# <%= dropezone.file_field :question_list %>
-    <%# <% end %>
-  </div>  
-
   <div class="field form-group">
     <%= form.label :due_date %>
     <%= form.date_select :due_date, class: "form-control" %>
@@ -46,13 +38,13 @@
     <%= form.number_field :student_id, value: nil %>
   </div>
   
-  <div class="field" >
-    <%= form.fields_for :questions do |f|%>
-        <%= render 'question_fields', f: f%>
-    <%end%>
-  </div>
-  <br>
-    <%= link_to_add_fields "Add question", form, :question%>
+  <fieldset>
+        <legend>Questions:</legend>
+        <%= form.fields_for :questions do |questions_form| %>
+        <%= render "question_fields", form: questions_form %>
+        <% end %>
+        <%= link_to_add_fields "Add Questions", form, :questions %>
+  </fieldset>
 
   <div class="actions">
     <%= form.submit %>
