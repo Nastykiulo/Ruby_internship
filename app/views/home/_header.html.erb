@@ -18,20 +18,23 @@
         <%else %>
             <%# current_user =  %>
         <% end %>
-        <% if current_user.admin?%>
-          <%= link_to 'Create a student', new_student_registration_path, class:"nav-link active" %>
-          <%= link_to 'Create a teacher', new_teacher_registration_path, class:"nav-link active" %>
-        <%end%>
-        <% if current_user.student? %>
-          <%= link_to 'My tests',  tests_path, class:"nav-link active" %>
-          <%= link_to 'My teachers', teachers_path, class:"nav-link active" %>
-        <%end%>
+        <%# if current_user.admin? %>
+          <%#= link_to 'Create a student', new_student_registration_path, class:"nav-link active" %>
+          <%#= link_to 'Create a teacher', new_teacher_registration_path, class:"nav-link active" %>
+          <%#= link_to 'Sign out', destroy_admin_session_path, method: :delete, class:"nav-link active " %>
+        <%#end%>
+        <%# if current_user.student? %>
+          <%#= link_to 'My tests',  tests_path, class:"nav-link active" %>
+          <%#= link_to 'My teachers', teachers_path, class:"nav-link active" %>
+          <%#= link_to 'Sign out', destroy_student_session_path, method: :delete, class:"nav-link active " %>
+        <%#end%>
 
-        <% if current_user.teacher? %>
-          <%= link_to 'My tests', teacher_tests_path(current_teacher.id), class:"nav-link active" %>
-          <%= link_to 'My students', new_teacher_registration_path, class:"nav-link active" %>
-        <%end%>
-        <% if user_signed_in? %>
+        <%# if current_user.teacher? %>
+          <%#= link_to 'My tests', teacher_tests_path(current_user.id), class:"nav-link active" %>
+          <%#= link_to 'My students', new_teacher_registration_path, class:"nav-link active" %>
+          <%#= link_to 'Sign out', destroy_teacher_session_path, method: :delete, class:"nav-link active " %>
+        <%# end %>
+        <% if user_signed_in? %>  
             <li class="nav-item">
               <%= link_to 'Edit user profile', edit_user_registration_path, class:"nav-link active" %>
             </li>

@@ -1,5 +1,5 @@
 class Teacher < User
-    has_many :test
+    has_many :tests
     #has_many :users, -> {where(role: student)}
     enum role: [:teacher]
 

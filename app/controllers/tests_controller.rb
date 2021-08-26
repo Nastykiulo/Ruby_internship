@@ -15,7 +15,6 @@ class TestsController < ApplicationController
   # GET /tests/new
   def new
     @test = Test.new
-    @test.question.build
   end
 
   # GET /tests/1/edit
@@ -69,7 +68,7 @@ class TestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def test_params
-      params.require(:test).permit(:title, :status, :due_date, :description, question_attributes: [:id, :question])
+      params.require(:test).permit(:title, :status, :due_date, :description, :teacher_id, question_attributes: [:id, :question])
     end
 
      def initialize_search

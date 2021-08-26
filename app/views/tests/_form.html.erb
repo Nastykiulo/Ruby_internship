@@ -31,17 +31,13 @@
   </div>
 
   <div class="field">
-    <%= form.number_field :teacher_id, value: current_teacher.id %>
-  </div>
-
-  <div class="field" id="leftMenu">
-    <%= form.number_field :student_id, value: nil %>
+    <%= form.number_field :teacher_id, value: 2 %>
   </div>
   
   <fieldset>
         <legend>Questions:</legend>
         <%= form.fields_for :questions do |questions_form| %>
-        <%= render "question_fields", form: questions_form %>
+        <%= render "question_fields", form: questions_form %>    
         <% end %>
         <%= link_to_add_fields "Add Questions", form, :questions %>
   </fieldset>
@@ -50,29 +46,3 @@
     <%= form.submit %>
   </div>
 <% end %>
-
-
-<script>
-  $('form').on ('click', '.add_fields', function(event) {
-    console.log('clicked');
-    
-    var regexp, time;
-    time = new Date().getTime();
-    regexp = new RegExp($(this).data('id'), 'g');
-    $(this).before($(this).data('fields')).toString().replace(regexp, time);
-    return event.preventDefault();
-  });
-
-  $('form').on ('click', '.remove_fields', function(event){
-    $(this).prev('input[type=hidden]').val('1')
-    $(this).closest('fieldset').hide()
-    return event.preventDefault()
-  });
-
-  $("#leftMenu a").click(function () {
-   $("#content").load($(this).attr("href")); //load html from the url and put it in the #content element
-   return false; //prevent the default href action
-
-
-});
-</script>

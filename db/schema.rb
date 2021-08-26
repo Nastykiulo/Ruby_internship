@@ -68,8 +68,10 @@ ActiveRecord::Schema.define(version: 2021_08_24_162831) do
     t.string "question"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "test_id"
     t.bigint "answer_item_id"
     t.index ["answer_item_id"], name: "index_questions_on_answer_item_id"
+    t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
   create_table "students", force: :cascade do |t|
