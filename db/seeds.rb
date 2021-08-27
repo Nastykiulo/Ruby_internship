@@ -13,7 +13,9 @@ User.create(email: 'guest@gmail.com', password: 'guest', password_confirmation: 
 
 
 Admin.create(email: 'admin1@gmail.com', password: 'admin1', password_confirmation: 'admin1', role: :admin)
+Admin.create(email: 'admin2@gmail.com', password: 'admin2', password_confirmation: 'admin2', role: :admin)
 Teacher.create(email: 'teacher1@gmail.com', password: 'teacher1', password_confirmation: 'teacher1', role: :teacher)
+Teacher.create(email: 'teacher2@gmail.com', password: 'teacher2', password_confirmation: 'teacher2', role: :teacher)
 Student.create(email: 'student1@gmail.com', password: 'student1', password_confirmation: 'student1', role: :student)
 
 Test.create(title: 'Test1', status: :published, due_date: DateTime.new(2012,1,17), description: 'desctiption', teacher_id: 3, category: 'art')

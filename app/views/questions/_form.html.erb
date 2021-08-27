@@ -15,12 +15,16 @@
     <%= form.label :question %>
     <%= form.text_field :question %>
   </div>
-
+  
+  <div class="field">
+    <%= form.label :test_id %>
+    <%= form.number_field :test_id, id: :question_test_id, value: 1 %>
+  </div> 
 
   <fieldset>
         <legend>Answers:</legend>
         <%= form.fields_for :answer_items do |answer_items_form| %>
-        <%= render "answer_fields", form: answer_items_form %>
+        <%= render "answer_item_fields", form: answer_items_form %>
         <% end %>
         <%= link_to_add_fields "Add Answers", form, :answer_items %>
   </fieldset>

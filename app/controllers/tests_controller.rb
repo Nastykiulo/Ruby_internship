@@ -29,7 +29,7 @@ class TestsController < ApplicationController
     
     respond_to do |format|
       if @test.save
-        format.html { redirect_to  teacher_tests_path(current_teacher.id), notice: "Test was successfully created." }
+        format.html { redirect_to  teacher_tests_path(current_user.id), notice: "Test was successfully created." }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class TestsController < ApplicationController
   def destroy
     @test.destroy
     respond_to do |format|
-      format.html { redirect_to tests_url, notice: "Test was successfully destroyed." }
+      format.html { redirect_to teacher_tests_url(current_user.id, test), notice: "Test was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -68,7 +68,7 @@ class TestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def test_params
-      params.require(:test).permit(:title, :status, :due_date, :description, :teacher_id, question_attributes: [:id, :question])
+      params.require(:test).permit(:title, :status, :due_date, :description, :teacher_id, question_attributes: [:id, :question, :_destroy])
     end
 
      def initialize_search
