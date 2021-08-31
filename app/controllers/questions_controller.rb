@@ -34,9 +34,7 @@ class QuestionsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
-    end
-
-    
+    end    
   end
 
   # PATCH/PUT /questions/1 or /questions/1.json
@@ -62,6 +60,9 @@ class QuestionsController < ApplicationController
   end
 
   private  
+    def set_test
+      @test = Test.find(params[:test_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_question
       @question = Question.find(params[:id])

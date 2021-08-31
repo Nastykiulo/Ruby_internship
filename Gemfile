@@ -49,6 +49,8 @@ gem 'pagy', '~> 3.5'
 
 gem 'jsonapi.rb'
 
+gem 'webpacker', github: 'rails/webpacker'
+
 #gem 'search_object'
 #gem 'search_object_graphql'
 #gem 'haml-rails'

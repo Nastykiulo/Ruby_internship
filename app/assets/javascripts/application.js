@@ -15,5 +15,5 @@
 //= require turbolinks
 //= require_tree .
 //= require dropzone
-require('./nested-forms/addFields')
-require('./nested-forms/removeFields')
+//=require('./addFields')
+//=require('./nested-forms/removeFields')
