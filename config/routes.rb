@@ -19,6 +19,7 @@ devise_for :teachers, controllers: { registrations: "teachers/registrations"}
 devise_for :students, controllers: { registrations: "students/registrations"}
 
 resources :teachers
+resources :students
 
 resources :bands do
   resources :albums
@@ -64,8 +65,6 @@ resources :items do
 end
   #get "tests#addstudent"
   match "/addstudent" => "tests#addstudent", :via => :get, :as => :addstudent
-
-  match "/teacherstudent" => "teachers#students", :via => :get, :as => :students
   
 #   resources :students do
 #     get :teacher_id, to: "students#new" #-> yoururl.com/registrations/:course_id

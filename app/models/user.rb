@@ -1,21 +1,16 @@
 class User < ApplicationRecord
    #before_action :authenticate_user!
    after_create :default_role 
-   has_many :students
-  
 
    enum role: [:guest, :teacher, :student, :admin]
    def admin?
       type == 'Admin'
-      self.role == "admin"
    end
    def teacher?
       type == 'Teacher'
-      self.role == "teacher"
    end
    def student?
       type == 'Student'
-      self.role == "student"
    end
 
    # Serialize string instead of BSON

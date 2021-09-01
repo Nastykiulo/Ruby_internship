@@ -1,11 +1,9 @@
 class StudentsController < ApplicationController
-  before_action :set_teacher, only: %i[ show edit update destroy ]
-  before_action :set_user, only: %i[ show edit update destroy ]
   before_action :set_student, only: %i[ show edit update destroy ]
 
   # GET /students or /students.json
   def index
-    #@students = Student.all
+    @students = Student.all
     @pagy, @students = pagy(Student.all)
   end
 
@@ -24,11 +22,7 @@ class StudentsController < ApplicationController
 
   # POST /students or /students.json
   def create
-    #@student = Student.new(student_params)
-
-    @teacher = Teacher.find(params[:teacher_id])
-    @student = @teacher.students.create(student_params)
-
+    @student = Student.new(student_params)
     respond_to do |format|
       if @student.save
         format.html { redirect_to teacher_students_path(current_teacher.id ), notice: "Student was successfully created." }
@@ -63,14 +57,6 @@ class StudentsController < ApplicationController
   end
 
   private
-
-  def set_teacher
-    @teacher = teacher.find(params[:teacher_id])
-  end
-
-  def set_user
-    @user = user.find(params[:user_id])
-  end
     # Use callbacks to share common setup or constraints between actions.
     def set_student
       @student = Student.find(params[:id])
@@ -78,6 +64,12 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:id, :email)
+      params.require(:student).permit(:first_name, :last_name, :gpa, :role)
     end
+    protected
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :remember_me) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password) }
+  end 
 end

@@ -14,13 +14,6 @@ class TeachersController < ApplicationController
 
   # GET /teachers/1 or /teachers/1.json
   def show
-    @students = Student.all
-    teacher_students = Teacher.all.includes(:student_id)
-    teacher_students_with_associations = teacher_students.map do |record|
-      record.attributes.merge(
-        'student' => record.student
-      )
-    end
   end
 
   # GET /teachers/new

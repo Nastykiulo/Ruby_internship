@@ -1,6 +1,5 @@
 class Teacher < User
     has_many :tests
-    #has_many :users, -> {where(role: student)}
     enum role: [:teacher]
 
     devise :database_authenticatable, :registerable,

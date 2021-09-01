@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #then the method called in the before action where you permit the parameters
   protected
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :role, :first_name, :last_name, :telephone])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :email, :password, :password_confirmation, :role, :telephone])
   end
   
   private

@@ -21,45 +21,6 @@
     <%= @teacher.email %>
   </p>
   <br/>
-
-  <%# if @user.students.any? %>
-  <hr>
-  <h2>Students of  <%= @teacher.last_name%> </h2>
-  <%#= render @user.students %>
-  <%# end %> 
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">First name</th>
-      <th scope="col">Last name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @students.each do |user| %>
-      <tr scope="row">
-        <td><%= user.id %></td>
-        <td><%= user.role %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-  <% Student.all.each do |user| %>
-    <%= user.inspect %>
-    <br/>
-  <% end %>
-
-  <hr>
-  <% teacher_students_with_associations.each do |user| %>
-      <%= user.inspect %>
-  <% end %>
-
-  <h2> Add student: </h2>
-  <%= render 'students/form', student: @teacher.students.build %>
   <%= link_to 'Edit', edit_teacher_path(@teacher), class:"boton1" %> 
   <%= link_to 'Back', teachers_path , class:"boton1"%>
 </div>

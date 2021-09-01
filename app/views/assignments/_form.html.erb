@@ -12,13 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :test_id %>
-    <%= form.text_field :test_id %>
+    <%= form.label :student_id %>
+    <%= form.select :student_id, options_for_select(Student.all.map{|s|[s.id]}) %>
+    <%#= form.text_field :student_id %>
   </div>
 
   <div class="field">
-    <%= form.label :student_id %>
-    <%= form.text_field :student_id %>
+    <%= form.label :test_id %>
+    <%= form.select :test_id, options_for_select(Test.all.map{|t|[t.title, t.id]}) %>
+    <%#= form.select :test_id, options_for_select(@test.map{ |t| [t.id, t.title] }) %>
+    <%#= form.text_field :test_id %>
   </div>
 
   <div class="actions">
