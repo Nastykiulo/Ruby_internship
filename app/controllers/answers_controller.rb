@@ -1,9 +1,10 @@
 class AnswersController < ApplicationController
+  before_action :set_question, only: %i[ show edit update destroy ]
   before_action :set_answer, only: %i[ show edit update destroy ]
 
   # GET /answers or /answers.json
   def index
-    @answers = Answer.all
+    @pagy, @answers = pagy(Answer.all)
   end
 
   # GET /answers/1 or /answers/1.json
@@ -21,11 +22,14 @@ class AnswersController < ApplicationController
 
   # POST /answers or /answers.json
   def create
-    @answer = Answer.new(answer_params)
+    @question = Question.find(params[:question_id])
+    @answer = @question.answers.create(answer_params)
+    redirect_to question_path(@question)
+    #@answer = Answer.new(answer_params)
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: "Answer was successfully created." }
+        format.html { redirect_to teacher_test_path(current_teacher.id, :id), notice: "Answer was successfully created." }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -58,6 +62,10 @@ class AnswersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_question
+      @question ||= Question.find(params[:question_id])
+    end
+
     def set_answer
       @answer = Answer.find(params[:id])
     end
@@ -65,5 +73,23 @@ class AnswersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def answer_params
       params.require(:answer).permit(:answer)
+    end
+
+    
+
+    def initialize_search
+      @answer = Answer.order(answer: :desc)
+      session[:answer] ||= params[:answer]
+      session[:filter] = params[:filter]
+      params[:filter_option] = nil if params[:filter_option] == ""
+      session[:filter_option] = params[:filter_option]
+    end
+  
+    def handle_search_name
+      if session[:answer]
+        @answer = Answer.where("answer LIKE ?", "%#{session[:answer]}%")
+      else
+        @answer = Answer.all
+      end
     end
 end

@@ -4,6 +4,7 @@ class StudentsController < ApplicationController
   # GET /students or /students.json
   def index
     @students = Student.all
+    @pagy, @students = pagy(Student.all)
   end
 
   # GET /students/1 or /students/1.json
@@ -13,7 +14,6 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
-    @teacher = Teacher.find_by id: params["teacher_id"]
   end
 
   # GET /students/1/edit
@@ -23,7 +23,6 @@ class StudentsController < ApplicationController
   # POST /students or /students.json
   def create
     @student = Student.new(student_params)
-
     respond_to do |format|
       if @student.save
         format.html { redirect_to teacher_students_path(current_teacher.id ), notice: "Student was successfully created." }
@@ -65,6 +64,12 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:id, :email)
+      params.require(:student).permit(:first_name, :last_name, :gpa, :role)
     end
+    protected
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :remember_me) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password) }
+  end 
 end

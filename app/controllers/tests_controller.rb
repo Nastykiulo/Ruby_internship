@@ -1,9 +1,11 @@
 class TestsController < ApplicationController
+  include Pagy::Backend
   before_action :set_test, only: %i[ show edit update destroy ]
   #@tests = Test.new(params[:test_id])
   # GET /tests or /tests.json
   def index
-    @tests = Test.all
+    #@tests = Test.all
+    @pagy, @tests = pagy(Test.all)
   end
 
   # GET /tests/1 or /tests/1.json
@@ -19,6 +21,7 @@ class TestsController < ApplicationController
   def edit
   end
 
+
   # POST /tests or /tests.json
   def create
     @test = Test.new(test_params)
@@ -26,7 +29,7 @@ class TestsController < ApplicationController
     
     respond_to do |format|
       if @test.save
-        format.html { redirect_to @test, notice: "Test was successfully created." }
+        format.html { redirect_to  teacher_tests_path(current_user.id), notice: "Test was successfully created." }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -52,7 +55,7 @@ class TestsController < ApplicationController
   def destroy
     @test.destroy
     respond_to do |format|
-      format.html { redirect_to tests_url, notice: "Test was successfully destroyed." }
+      format.html { redirect_to teacher_tests_url(current_user.id, test), notice: "Test was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,6 +68,23 @@ class TestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def test_params
-      params.require(:test).permit(:title, :status, :question_list, :due_date, :description, :user_id)
+      params.require(:test).permit(:title, :status, :due_date, :description, :teacher_id, question_attributes: [:id, :question, :_destroy])
     end
+
+     def initialize_search
+      @tests = Test.order(title: :desc)
+      session[:title] ||= params[:title]
+      session[:filter] = params[:filter]
+      params[:filter_option] = nil if params[:filter_option] == ""
+      session[:filter_option] = params[:filter_option]
+    end
+  
+    def handle_search_name
+      if session[:title]
+        @tests = Test.where("title LIKE ?", "%#{session[:title]}%")
+      else
+        @tests = Test.all
+      end
+    end
+
 end

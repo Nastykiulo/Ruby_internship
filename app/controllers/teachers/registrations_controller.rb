@@ -8,7 +8,7 @@ class Teachers::RegistrationsController < Devise::RegistrationsController
   end
   #then the method called in the before action where you permit the parameters
   def create
-    params[:user] = params[:user]&.merge(type: 'Teacher')
+    params[:user] = params[:users]&.merge(type: 'Teacher')
     super
   end  
   protected  
@@ -16,6 +16,6 @@ class Teachers::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[type])
   end
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :role])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation, :role, :first_name, :last_name, :telephone])
   end
 end

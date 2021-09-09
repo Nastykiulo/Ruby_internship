@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @test_result_item.question %>
+</p>
+
+<p>
+  <strong>Student answer:</strong>
+  <%= @test_result_item.student_answer_id %>
+</p>
+
+<p>
+  <strong>Test result:</strong>
+  <%= @test_result_item.test_result %>
+</p>
+
+<%= link_to 'Edit', edit_test_result_item_path(@test_result_item) %> |
+<%= link_to 'Back', test_result_items_path %>

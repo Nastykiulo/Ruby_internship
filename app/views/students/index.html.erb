@@ -5,7 +5,7 @@
     <tr>
       <th scope="col">Student ID</th>
       <th scope="col">Student email</th>
-      <th colspan="4"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -14,14 +14,12 @@
       <tr scope="row">
         <td><%= student.id %></td>
         <td><%= student.email %></td>
-        <td><%= link_to 'Show', teacher_students_path(current_teacher.id) %></td>
-        <td><%= link_to 'Edit', edit_teacher_student_path(current_teacher.id, 2) %></td>
-        
       </tr>
     <% end %>
   </tbody>
 </table>
 
+  <%== pagy_bootstrap_nav(@pagy).html_safe %>
 <br>
 
-<%= link_to 'New Student', new_teacher_student_path(current_teacher.id) %>
+<%= link_to 'New Student', new_student_path, class:"btn btn-light"  %>

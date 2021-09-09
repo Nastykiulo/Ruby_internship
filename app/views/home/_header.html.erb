@@ -10,42 +10,37 @@
         <li class="nav-item">
           <%= link_to 'About Us', home_about_path, class:"nav-link active customA2" %>
         </li>
-        <% if user_signed_in? %>
+        <% if !user_signed_in?%>
         <%# navbar for autorized user %>
+          <li class="nav-item">
+            <%= link_to 'Sign in', new_user_session_path, class:"nav-link active" %>
+          </li>
+        <%else %>
+            <%# current_user =  %>
+        <% end %>
+        <% if user_signed_in? && current_user.admin? %>
+          <%= link_to 'Create a student', new_student_registration_path, class:"nav-link active" %>
+          <%= link_to 'Create a teacher', new_teacher_registration_path, class:"nav-link active" %>
+        <%end%>
+        <% if user_signed_in? && current_user.student? %>
+          <%= link_to 'My tests',  tests_path, class:"nav-link active" %>
+          <%= link_to 'My teachers', teachers_path, class:"nav-link active" %>
+        <%end%>
+        <% if user_signed_in? && current_user.teacher? %>
+          <%= link_to 'My tests', teacher_tests_path(current_user.id), class:"nav-link active" %>
+          <%= link_to 'My students', new_teacher_registration_path, class:"nav-link active" %>
+        <% end %>
+        <% if user_signed_in? %> 
+          <li class="nav-item">
+            <%= link_to 'Edit user profile', edit_user_registration_path, class:"nav-link active" %>
+          </li>
           <li class="nav-item">
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class:"nav-link active " %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Edit user profile', edit_user_registration_path, class:"nav-link active" %>
-          </li>
-        <%else %>
-        <%# navbar for unautorized user %>
-          <li class="nav-item">
-            <%= link_to 'Sign up', new_user_registration_path, class:"nav-link active" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Sign in', new_user_session_path, class:"nav-link active" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Sign in admin', new_admin_session_path, class:"nav-link active" %>
+            <%= link_to 'Delete my acount', cancel_user_registration_path, method: :delete, class:"nav-link active" %>
           </li>
         <% end %>
-        <%# navbar fo teacher role %>
-        <% if user_signed_in? && current_user.teacher? %>
-          <li class="nav-item">
-            <%= link_to 'Students list', teacher_students_path(current_user.id), class:"nav-link active" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Tests list', teacher_tests_path(current_user.id), class:"nav-link active" %>
-          </li>
-          <% else %>
-            <%# current_user =  %>
-        <% end %>
-        <% if admin_signed_in? %>
-          <%= link_to 'Create a student', new_student_registration_path, class:"nav-link active" %>
-          <%= link_to 'Create a teacher', new_teacher_registration_path, class:"nav-link active" %>
-          <%= link_to 'Log out admin', destroy_user_session_path, method: :delete, class:"nav-link active" %>
-        <%end%>
       </ul>
     </div>
   </div>

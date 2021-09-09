@@ -1,10 +1,16 @@
 class TeachersController < ApplicationController
+  include Pagy::Backend
   before_action :set_teacher, only: %i[ show edit update destroy ]
 
+  TEACHERS_PER_PAGE = 3
   # GET /teachers or /teachers.json
   def index
-    @teachers = Teacher.all
+    #@teachers = Teacher.all
+    @pagy, @teachers = pagy(Teacher.all)
   end
+
+  # def students
+  # end
 
   # GET /teachers/1 or /teachers/1.json
   def show

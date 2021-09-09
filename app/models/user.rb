@@ -1,7 +1,6 @@
 class User < ApplicationRecord
    #before_action :authenticate_user!
    after_create :default_role 
-  
 
    enum role: [:guest, :teacher, :student, :admin]
    def admin?

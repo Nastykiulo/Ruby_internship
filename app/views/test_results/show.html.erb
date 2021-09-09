@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Assignment:</strong>
+  <%= @test_result.assignment %>
+</p>
+
+<p>
+  <strong>Pass:</strong>
+  <%= @test_result.pass %>
+</p>
+
+<% if @test_result.test_result_items.any? %>
+  <hr>
+  <h2>test_result_items of <%= @test_result.assignment%> </h2>
+  <%= render @test_result.test_result_items %>
+  <% end %>
+
+  <h2>Add test_result_item: </h2>
+  <%render 'test_result_itemss/form', test_result_item: @test_result.test_result_items.build %> 
+
+
+<%= link_to 'Edit', edit_test_result_path(@test_result) %> |
+<%= link_to 'Back', test_results_path %>

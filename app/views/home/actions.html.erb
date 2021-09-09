@@ -3,3 +3,7 @@
 <p> Choose an action:</p>
 <%= link_to 'All students', teacher_student_path(current_teacher.id, 2), class:"nav-link active" %>
 <%= link_to 'Add new student',  new_teacher_student_path(current_teacher.id), class:"nav-link active" %>
+
+<%= link_to 'Show all tests',  teacher_tests_path(current_teacher.id), class:"nav-link active" %>
+<%= link_to 'Create test', new_teacher_test_path(current_teacher.id), class:"nav-link active" %>
+

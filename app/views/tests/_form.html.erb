@@ -1,4 +1,4 @@
-<%= form_with(model: test, local: true ) do |form| %>
+<%= form_for @test do |form| %>
   <% if test.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(test.errors.count, "error") %> prohibited this test from being saved:</h2>
@@ -20,15 +20,6 @@
     <%= form.select :status, Test.statuses.keys %>
   </div>
 
-  <div class="field dropezone fallback">
-    <%= form.label :question_list %>
-    <%= form.file_field :question_list %>
-    <%# <%= form.fields_for html: {multipart:true, autoProcessQueue: false, class: "dropzone", id: "my-dropzone"} do |dropezone|%> 
-      <%# <%= dropezone.file_field :question_list %>
-    <%# <% end %>
-  </div>  
-
-
   <div class="field form-group">
     <%= form.label :due_date %>
     <%= form.date_select :due_date, class: "form-control" %>
@@ -40,9 +31,16 @@
   </div>
 
   <div class="field">
-    <%= form.number_field :user_id, id: :test_teacher_id, value: current_user.id, type: :hidden%>
+    <%= form.number_field :teacher_id, value: 2 %>
   </div>
-
+  
+  <fieldset>
+        <legend>Questions:</legend>
+        <%= form.fields_for :questions do |questions_form| %>
+        <%= render "question_fields", form: questions_form %>    
+        <% end %>
+        <%= link_to_add_fields "Add Questions", form, :questions %>
+  </fieldset>
 
   <div class="actions">
     <%= form.submit %>

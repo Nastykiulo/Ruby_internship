@@ -1,0 +1,5 @@
+<p> <%= answer_item.id %> | <%=link_to answer_item.title, question_answer_item_path(@question, answer_item) %> </p>
+<p>Edit this answer:</p>
+<%= render 'answer_items/form', answer: answer %>
+<p> <%= link_to "Delete answer", question_answer_item_path(@question, answer_item), method: :delete %> </p>
+<hr>

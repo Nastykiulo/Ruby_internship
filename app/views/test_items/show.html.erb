@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Assignment:</strong>
+  <%= @test_item.assignment %>
+</p>
+
+<p>
+  <strong>Pass:</strong>
+  <%= @test_item.pass %>
+</p>
+
+<%= link_to 'Edit', edit_test_item_path(@test_item) %> |
+<%= link_to 'Back', test_items_path %>

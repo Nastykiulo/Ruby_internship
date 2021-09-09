@@ -8,7 +8,8 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.6'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -42,6 +43,22 @@ gem 'devise'
 
 gem 'dropzonejs-rails'
 
+gem 'coffee-script-source', '1.8.0'
+
+gem 'pagy', '~> 3.5'
+
+gem 'jsonapi.rb'
+
+gem 'webpacker', github: 'rails/webpacker'
+
+#gem 'search_object'
+#gem 'search_object_graphql'
+#gem 'haml-rails'
+
+#gem 'mongoid', '~> 4.0.0'
+#gem 'protected_attributes'
+#gem 'protected_attributes'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -58,10 +75,14 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
+  gem 'rspec-rails'
+  gem 'webdrivers'
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'byebug', platform: :mri
+  gem 'factory_bot'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

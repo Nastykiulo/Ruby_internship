@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Answer Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Correct</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answer_items.each do |answer_item| %>
+      <tr>
+        <td><%= answer_item.title %></td>
+        <td><%= answer_item.correct %></td>
+        <td><%= link_to 'Show', answer_item %></td>
+        <td><%= link_to 'Edit', edit_answer_item_path(answer_item) %></td>
+        <td><%= link_to 'Destroy', answer_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Answer Item', new_answer_item_path %>
