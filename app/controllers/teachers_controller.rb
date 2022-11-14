@@ -16,8 +16,7 @@ class TeachersController < ApplicationController
   end
 
   # GET /teachers/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /teachers or /teachers.json
   def create
