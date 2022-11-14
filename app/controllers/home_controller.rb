@@ -1,10 +1,7 @@
 class HomeController < ApplicationController
-  def index
-  end
+  def index; end
 
-  def about
-  end
+  def about; end
 
-  def actions
-  end
+  def actions; end
 end
